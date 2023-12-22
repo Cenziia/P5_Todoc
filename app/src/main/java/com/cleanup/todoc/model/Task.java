@@ -72,7 +72,6 @@ public class Task {
         this.id = id;
     }
 
-    //TODO
     public long getProjectId() {
         return projectId;
     }

@@ -3,22 +3,12 @@ package com.cleanup.todoc;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-
-import android.content.Context;
-
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
-
 import androidx.room.Room;
-
-import androidx.room.RoomDatabase;
-import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 
-
 import com.cleanup.todoc.database.TodocRoomDatabase;
-import com.cleanup.todoc.database.dao.ProjectDao;
-import com.cleanup.todoc.database.dao.TaskDao;
 import com.cleanup.todoc.model.Project;
 import com.cleanup.todoc.model.Task;
 
@@ -30,13 +20,9 @@ import org.junit.runner.RunWith;
 
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
 
 @RunWith(AndroidJUnit4.class)
 public class DatabaseInstrumentedTest {
-    private TaskDao taskDao;
-    private ProjectDao projectDao;
 
     @Rule
     public InstantTaskExecutorRule instantTaskExecutorRule = new InstantTaskExecutorRule();
@@ -59,27 +45,6 @@ public class DatabaseInstrumentedTest {
         List<Task> tasks = LiveDataTestUtils.getValue(this.database.taskDao().getTasks());
         assertTrue(tasks.isEmpty());
 
-        /*Context context = ApplicationProvider.getApplicationContext();
-        this.database = Room.inMemoryDatabaseBuilder(context,
-                        TodocRoomDatabase.class)
-                .allowMainThreadQueries()
-                .build();
-        projectDao.insertProjects(this.projects);
-
-        List<Task> tasks = LiveDataTestUtils.getValue(taskDao.getTasks());
-        assertTrue(tasks.isEmpty());*/
-       /* database = Room.inMemoryDatabaseBuilder(
-                        ApplicationProvider.getApplicationContext(),
-                        TodocRoomDatabase.class)
-                .allowMainThreadQueries()
-                .build();
-        taskDao = database.taskDao();
-        projectDao = database.projectDao();
-
-        projectDao.insertProjects(projects);
-
-        List<Task> tasks = LiveDataTestUtils.getValue(taskDao.getTasks());
-        assertTrue(tasks.isEmpty());*/
     }
 
 
@@ -115,7 +80,6 @@ public class DatabaseInstrumentedTest {
 
     @Test
     public void deleteAndGetTask() throws InterruptedException {
-        List<Project> projects = LiveDataTestUtils.getValue(this.database.projectDao().getProjects());
 
         this.database.taskDao().insert(this.task1);
         this.database.taskDao().insert(this.task2);

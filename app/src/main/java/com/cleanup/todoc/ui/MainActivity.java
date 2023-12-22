@@ -111,7 +111,6 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
 
         findViewById(R.id.fab_add_task).setOnClickListener(view -> showAddTaskDialog());
 
-        // TODO
         taskViewModel = new ViewModelProvider(this).get(TaskViewModel.class);
         taskViewModel.getAllProjects().observe(this, allProjects -> projects = allProjects);
         taskViewModel.getAllTasks().observe(this, allTasks -> {
@@ -149,7 +148,6 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
     @Override
     public void onDeleteTask(Task task) {
         tasks.remove(task);
-        //TODO
         taskViewModel.deleteTask(task);
         updateTasks();
     }
@@ -221,7 +219,6 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
      */
     private void addTask(@NonNull Task task) {
         tasks.add(task);
-        //TODO
         taskViewModel.insertTask(task);
         updateTasks();
     }
@@ -230,7 +227,6 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
      * Updates the list of tasks in the UI
      */
     private void updateTasks() {
-        //TODO
         if (tasks.size() == 0) {
             lblNoTasks.setVisibility(View.VISIBLE);
             listTasks.setVisibility(View.GONE);

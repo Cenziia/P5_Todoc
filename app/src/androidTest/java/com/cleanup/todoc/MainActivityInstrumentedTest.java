@@ -16,7 +16,6 @@ import android.view.View;
 
 
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.test.core.app.ActivityScenario;
 import androidx.test.espresso.NoMatchingViewException;
 import androidx.test.espresso.ViewAssertion;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
@@ -42,20 +41,6 @@ public class MainActivityInstrumentedTest {
 
     @Test
     public void addAndRemoveTask(){
-
-
-            ActivityScenario<MainActivity> activity = activityRule.getScenario();
-
-
-            // Obtenir la vue TextView lblNoTask
-            //ViewInteraction lblNoTask = onView(withId(R.id.lbl_no_task)).check(matches(isDisplayed()));
-
-            // Obtenir la vue RecyclerView listTasks
-            //onView(withId(R.id.list_tasks)).check(matches(isDisplayed()));
-
-
-            //TextView lblNoTask = activity.onActivity(activity -> )       (R.id.lbl_no_task);
-            //RecyclerView listTasks = activity.findViewById(R.id.list_tasks);
 
             onView(withId(R.id.fab_add_task)).perform(click());
             onView(withId(R.id.txt_task_name)).perform(replaceText("Tâche example"));
@@ -88,35 +73,6 @@ public class MainActivityInstrumentedTest {
 
     @Test
     public void sortTasks() throws InterruptedException {
-
-        //ViewInteraction listTasks = onView(withId(R.id.list_tasks)).check(matches(isDisplayed()));
-        //listTasks.perform(RecyclerViewActions.scrollToPosition(0));
-
-        // Attendre que la RecyclerView soit affichée
-        //onView(withId(R.id.list_tasks)).check(matches(isDisplayed())).perform(waitFor(5000)); // Attendre 5 secondes
-
-
-        /*ViewInteraction recyclerView = onView(withId(R.id.list_tasks))
-                .check(matches(isDisplayed()));
-
-        recyclerView.check(new ViewAssertion() {
-            @Override
-            public void check(View view, NoMatchingViewException noViewFoundException) {
-                if (view instanceof RecyclerView) {
-                    RecyclerView.Adapter adapter = ((RecyclerView) view).getAdapter();
-                    if (adapter != null) {
-                        int count = adapter.getItemCount();
-                        if (count > 0) {
-                            for (int i = 1; i <= count; i++) {
-                                onView(withRecyclerView(R.id.list_tasks).atPositionOnView(0, R.id.img_delete))
-                                        .perform(click());
-                            }
-                        }
-                    }
-                }
-            }
-        });*/
-
 
         onView(withId(R.id.fab_add_task)).perform(click());
         onView(withId(R.id.txt_task_name)).perform(replaceText("aaa Tâche example"));
